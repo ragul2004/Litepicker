@@ -272,34 +272,50 @@ export class Calendar extends LPCore {
       weekdaysRow.appendChild(weekday);
     }
 
-    const days = document.createElement('div');
-    days.className = style.containerDays;
+    const containerDays = document.createElement('div');
+    containerDays.className = style.containerDays;
+    let weekDaysIdx = 0;
+
+    let weekDays = document.createElement('div');
+    weekDays.className = "row";
 
     const skipDays = this.calcSkipDays(startDate);
 
     if (this.options.showWeekNumbers && skipDays) {
-      days.appendChild(this.renderWeekNumber(startDate));
+      weekDays.appendChild(this.renderWeekNumber(startDate));
     }
 
     for (let idx = 0; idx < skipDays; idx += 1) {
       const dummy = document.createElement('div');
-      days.appendChild(dummy);
+      weekDays.appendChild(dummy);
+      weekDaysIdx++;
     }
 
     // tslint:disable-next-line: prefer-for-of
     for (let idx = 1; idx <= totalDays; idx += 1) {
       startDate.setDate(idx);
 
-      if (this.options.showWeekNumbers && startDate.getDay() === this.options.firstDay) {
-        days.appendChild(this.renderWeekNumber(startDate));
+      if (weekDaysIdx === 7) {
+        containerDays.appendChild(weekDays);
+        weekDays = document.createElement('div');
+        weekDays.className = "row";
+        weekDaysIdx = weekDaysIdx % 7;
       }
 
-      days.appendChild(this.renderDay(startDate));
+      if (this.options.showWeekNumbers && startDate.getDay() === this.options.firstDay) {
+        weekDays.appendChild(this.renderWeekNumber(startDate));
+      }
+
+      weekDays.appendChild(this.renderDay(startDate));
+
+      weekDaysIdx++;
     }
+
+    containerDays.appendChild(weekDays);
 
     month.appendChild(monthHeader);
     month.appendChild(weekdaysRow);
-    month.appendChild(days);
+    month.appendChild(containerDays);
 
     this.emit('render:month', month, date);
 
