@@ -311,6 +311,11 @@ export class Calendar extends LPCore {
       weekDaysIdx++;
     }
 
+    for (let idx = weekDaysIdx; idx < 7; idx += 1) {
+      const dummy = document.createElement('div');
+      weekDays.appendChild(dummy);
+    }
+
     containerDays.appendChild(weekDays);
 
     month.appendChild(monthHeader);
