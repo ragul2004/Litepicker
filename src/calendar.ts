@@ -268,6 +268,7 @@ export class Calendar extends LPCore {
       const weekday = document.createElement('div');
       weekday.innerHTML = this.weekdayName(dayIdx);
       weekday.title = this.weekdayName(dayIdx, 'long');
+      weekday.classList.add('week-idx-' + ((w - 1 + this.options.firstDay) % 7));
       weekdaysRow.appendChild(weekday);
     }
 
@@ -316,6 +317,8 @@ export class Calendar extends LPCore {
     if (date.toDateString() === (new Date()).toDateString()) {
       day.classList.add(style.isToday);
     }
+
+    day.classList.add('week-' + date.getDay());
 
     if (this.datePicked.length) {
       if (this.datePicked[0].toDateString() === date.toDateString()) {
