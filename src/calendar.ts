@@ -150,6 +150,8 @@ export class Calendar extends LPCore {
     } else {
       const monthName = document.createElement('strong');
       monthName.className = style.monthItemName;
+      monthName.dataset.month = date.getMonth().toString();
+      monthName.dataset.year = date.getFullYear().toString();
       monthName.innerHTML = date.toLocaleString(this.options.lang, { month: 'long' });
       monthAndYear.appendChild(monthName);
     }

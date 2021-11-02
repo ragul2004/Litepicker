@@ -184,6 +184,8 @@ export class Litepicker extends Calendar {
     if (target.classList.contains(style.dayItem)) {
       e.preventDefault();
 
+      console.log(this.datePicked);
+
       if (target.classList.contains(style.isLocked)) {
         return;
       }
@@ -288,6 +290,19 @@ export class Litepicker extends Calendar {
       this.hide();
 
       this.emit('button:apply', this.options.startDate, this.options.endDate);
+    }
+
+    // Click on month
+    if (target.classList.contains(style.monthItemName)) {
+      e.preventDefault();
+
+      const month = parseInt(target.dataset.month);
+      const year = parseInt(target.dataset.year);
+
+      this.setDateRange(new Date(year, month, 1), new Date(year, month + 1, 0));
+
+      this.render();
+
     }
   }
 
