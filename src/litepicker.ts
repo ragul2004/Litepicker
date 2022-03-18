@@ -184,8 +184,6 @@ export class Litepicker extends Calendar {
     if (target.classList.contains(style.dayItem)) {
       e.preventDefault();
 
-      console.log(this.datePicked);
-
       if (target.classList.contains(style.isLocked)) {
         return;
       }
@@ -302,6 +300,8 @@ export class Litepicker extends Calendar {
       this.setDateRange(new Date(year, month, 1), new Date(year, month + 1, 0));
 
       this.render();
+
+      this.emit('preselect', ...[...this.datePicked].map(d => d.clone()));
 
     }
   }

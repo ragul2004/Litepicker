@@ -207,6 +207,7 @@ Litepicker.prototype.setLockDays = function (array) {
     array,
     this.options.lockDaysFormat,
   );
+  console.log('this.options.lockDays', this.options.lockDays);
   this.render();
 };
 

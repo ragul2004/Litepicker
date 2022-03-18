@@ -9,7 +9,7 @@
     "dev": "webpack --config config/webpack.dev.js",
     "nocss": "webpack --config config/webpack.nocss.js",
     "plugins": "webpack --config config/webpack.plugins.js && webpack --config config/webpack.plugins.nocss.js",
-    "watch": "webpack -w --config config/webpack.dev.js",
+    "watch": "node_modules/.bin/webpack -w --config config/webpack.dev.js",
     "test": "jest"
   },
   "keywords": [

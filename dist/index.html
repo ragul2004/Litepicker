@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,15 +9,39 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/nocss/litepicker.js"></script> -->
     <title>Document</title>
 </head>
+
 <body>
     <input type="text" id="litepicker">
+    <!--<input type="text" id="litepicker-2">--> 
     <script>
-        const picker = new Litepicker({ 
-            element: document.getElementById('litepicker') ,
+        const picker = new Litepicker({
+            element: document.getElementById('litepicker'),
             singleMode: false,
-                    numberOfColumns: 2,
-        numberOfMonths: 2,
+            numberOfColumns: 2,
+            numberOfMonths: 2,
+            // minDate: '2022-03-05',
+            setup: (picker) => {
+                picker.on("preselect", (date1, date2) => {
+                    console.log('qqq');
+                    // if (date1 && date2) changeRange({ newest: date2, oldest: date1 });
+                });
+                picker.options.minDate = '2022-03-10';
+                // picker.setLockDays([['1970-01-01', '2022-03-05'], '2022-03-08']);
+                // console.log(picker.minDate());
+
+            },
         });
+        // const picker2 = new Litepicker({
+        //     element: document.getElementById('litepicker-2'),
+        //     singleMode: false,
+        //     numberOfColumns: 2,
+        //     numberOfMonths: 2,
+        // });
+        // picker2.setLockDays([
+        //     ["2000-01-01", "2022-02-10"],
+        //     ["2022-04-10", "2100-01-01"],
+        //   ]);
     </script>
 </body>
+
 </html>
