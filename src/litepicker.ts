@@ -297,11 +297,14 @@ export class Litepicker extends Calendar {
       const month = parseInt(target.dataset.month);
       const year = parseInt(target.dataset.year);
 
-      this.setDateRange(new Date(year, month, 1), new Date(year, month + 1, 0));
+      this.datePicked[0] = new DateTime(new Date(year, month, 1));
+      this.datePicked[1] = new DateTime(new Date(year, month + 1, 0));
 
-      this.render();
+      this.setDateRange(this.datePicked[0], this.datePicked[1]);
 
       this.emit('preselect', ...[...this.datePicked].map(d => d.clone()));
+      this.render();
+
 
     }
   }

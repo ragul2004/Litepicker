@@ -22,7 +22,7 @@
             // minDate: '2022-03-05',
             setup: (picker) => {
                 picker.on("preselect", (date1, date2) => {
-                    console.log('qqq');
+                    console.log('preselect', date1, date2);
                     // if (date1 && date2) changeRange({ newest: date2, oldest: date1 });
                 });
                 picker.options.minDate = '2022-03-10';
