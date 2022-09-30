@@ -520,6 +520,7 @@ export class Litepicker extends Calendar {
       }
 
       this.emit('selected', this.getStartDate(), this.getEndDate());
+      this.emit('inputed', this.getStartDate(), this.getEndDate());
 
       this.gotoDate(dateGo, monthIdx);
     }
