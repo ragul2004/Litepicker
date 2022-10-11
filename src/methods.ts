@@ -157,7 +157,7 @@ Litepicker.prototype.setEndDate = function (date) {
   this.updateInput();
 };
 
-Litepicker.prototype.setDateRange = function (date1, date2, force: boolean = false) {
+Litepicker.prototype.setDateRange = function (date1, date2, force: boolean = false, init: boolean = false) {
   // stop repicking by resetting the trigger element
   this.triggerElement = undefined;
 
@@ -191,7 +191,11 @@ Litepicker.prototype.setDateRange = function (date1, date2, force: boolean = fal
 
     this.updateInput();
 
-    this.emit('selected', this.getStartDate(), this.getEndDate());
+
+
+    if (!init) {
+      this.emit('selected', this.getStartDate(), this.getEndDate());
+    }
   }
 };
 

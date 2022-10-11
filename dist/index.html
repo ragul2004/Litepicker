@@ -12,8 +12,18 @@
 
 <body>
     <input type="text" id="litepicker">
-    <!--<input type="text" id="litepicker-2">--> 
+    <button id="ff">wwww</button>
+    <!--<input type="text" id="litepicker-2">-->
     <script>
+        document.getElementById('ff').addEventListener('click', function () {
+            console.log('yyy');
+            picker.setDateRange(
+                new Date('2022-09-01'),
+                new Date('2022-09-21'),
+                false,
+                true
+            );
+        })
         const picker = new Litepicker({
             element: document.getElementById('litepicker'),
             singleMode: false,
@@ -21,6 +31,9 @@
             numberOfMonths: 2,
             // minDate: '2022-03-05',
             setup: (picker) => {
+                picker.on("selected", (date1, date2) => {
+                    console.log('selected');
+                })
                 picker.on("preselect", (date1, date2) => {
                     console.log('preselect', date1, date2);
                     // if (date1 && date2) changeRange({ newest: date2, oldest: date1 });
